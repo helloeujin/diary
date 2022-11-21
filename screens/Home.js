@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
 import { Ionicons } from "@expo/vector-icons";
+import { AdMobBanner } from "expo-ads-admob";
 
 const View = styled.View`
   flex: 1;
+  align-items: center;
   padding: 0px 30px;
   padding-top: 100px;
   background-color: ${colors.bgColor};
@@ -12,7 +14,8 @@ const View = styled.View`
 const Title = styled.Text`
   color: ${colors.textColor};
   font-size: 38px;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
+  width: 100%;
 `;
 const Btn = styled.TouchableOpacity`
   position: absolute;
@@ -30,9 +33,15 @@ const BtnText = styled.Text`
   color: white;
 `;
 
+// "ca-app-pub-3940256099942544/6300978111"
 const Home = ({ navigation: { navigate } }) => (
   <View>
     <Title>My journal</Title>
+
+    <AdMobBanner
+      bannerSize="fullBanner"
+      adUnitID="ca-app-pub-3940256099942544/2934735716"
+    />
 
     <Btn onPress={() => navigate("Write")}>
       <Ionicons name="add" color="white" size={40} />

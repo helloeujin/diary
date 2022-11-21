@@ -1,3 +1,4 @@
+import { AdMobInterstitial, AdMobRewarded } from "expo-ads-admob";
 import React, { useState } from "react";
 import { Alert } from "react-native";
 import styled from "styled-components/native";
@@ -67,10 +68,23 @@ const Write = () => {
   const [feelings, setFeelings] = useState("");
   const onChangeText = (text) => setFeelings(text);
   const onEmotionPress = (face) => setEmotion(face);
-  const onSubmit = () => {
-    if (feelings === "" || selectedEmotion === null) {
-      return Alert.alert("Please complete form.");
-    }
+
+  const onSubmit = async () => {
+    // if (feelings === "" || selectedEmotion === null) {
+    //   return Alert.alert("Please complete form.");
+    // }
+
+    // Display an interstitial
+    // await AdMobInterstitial.setAdUnitID(
+    //   "ca-app-pub-3940256099942544/4411468910"
+    // ); // Test ID, Replace with your-admob-unit-id
+    // await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true });
+    // await AdMobInterstitial.showAdAsync();
+
+    // Display a rewarded ad
+    await AdMobRewarded.setAdUnitID("ca-app-pub-3940256099942544/1712485313");
+    await AdMobRewarded.requestAdAsync();
+    await AdMobRewarded.showAdAsync();
   };
 
   //   console.log(feelings, selectedEmotion);
