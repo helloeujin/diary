@@ -63,7 +63,7 @@ const EmotionText = styled.Text`
 const emotions = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
 
 ////////////////////
-const Write = () => {
+const Write = ({ navigation: { goBack } }) => {
   const [selectedEmotion, setEmotion] = useState(null);
   const [feelings, setFeelings] = useState("");
   const onChangeText = (text) => setFeelings(text);
@@ -85,6 +85,14 @@ const Write = () => {
     await AdMobRewarded.setAdUnitID("ca-app-pub-3940256099942544/1712485313");
     await AdMobRewarded.requestAdAsync();
     await AdMobRewarded.showAdAsync();
+
+    AdMobRewarded.addEventListener("rewardedVideoUserDidEarnReward", () => {
+      // console.log("reward won!");
+      AdMobRewarded.addEventListener("rewardedVideoDidDismiss", () => {
+        // console.log("reward dismissed");
+        goBack();
+      });
+    });
   };
 
   //   console.log(feelings, selectedEmotion);
